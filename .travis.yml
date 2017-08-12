@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - "8"
+
+env:
+  global:
+    - NODE_ENV=test
+    # avoid ALSA errors
+    - SDL_AUDIODRIVER=alsa
+    - AUDIODEV=null
+
+addons:
+  apt:
+    sources:
+      - trusty-media
+    packages:
+      - ffmpeg
+      - libasound2-dev
+
+cache: yarn
+
+script:
+  - yarn install
+  - yarn run lint:all
+  - yarn run test:all
+  - yarn run e2e -- -e chrome-headless
