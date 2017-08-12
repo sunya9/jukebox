@@ -11,11 +11,8 @@ addons:
       - ffmpeg
       - libasound2-dev
 
-cache: yarn
-
 script:
-  - yarn config set mpg123-backend dummy
-  - yarn install
-  - yarn run lint:all
-  - yarn run test:all
-  - yarn run e2e -- -e chrome-headless
+  - npm install -mpg123-backend=dummy
+  - npm run lint:all
+  - npm run test:all
+  - npm run e2e -- -e chrome-headless
