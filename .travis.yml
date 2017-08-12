@@ -11,6 +11,8 @@ addons:
       - ffmpeg
       - libasound2-dev
 
+cache: yarn
+
 before_install:
   - yarn config set mpg123-backend dummy
 
