@@ -21,6 +21,7 @@ addons:
 cache: yarn
 
 script:
+  - yarn config set mpg123-backend dummy
   - yarn install
   - yarn run lint:all
   - yarn run test:all
