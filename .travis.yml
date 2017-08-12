@@ -12,7 +12,7 @@ addons:
       - libasound2-dev
 
 before_install:
-  - yarn config mpg123-backend dummy
+  - yarn config set mpg123-backend dummy
 
 script:
   - yarn run lint:all
