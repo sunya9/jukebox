@@ -3,12 +3,6 @@ language: node_js
 node_js:
   - "8"
 
-env:
-  global:
-    - NODE_ENV=test
-    # avoid ALSA errors
-    - SDL_AUDIODRIVER=alsa
-
 addons:
   apt:
     sources:
