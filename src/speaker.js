@@ -30,8 +30,8 @@ module.exports = class Speaker extends EventEmitter {
     mpg123Util.setVolume(this._decodedStream.mh, this.volume);
 
     this._speaker = speaker();
-    this._audioStream = this._decodedStream.pipe(this._speaker);
-    this._audioStream.on('close', () => {
+    this._decodedStream.pipe(this._speaker);
+    this._decodedStream.on('close', () => {
       this.stop();
     });
 
@@ -49,13 +49,14 @@ module.exports = class Speaker extends EventEmitter {
   }
 
   stop() {
-    if (this._decodedStream && this._speaker) {
+    if (this._decodedStream && this._speaker && this.stream) {
       try {
         this.stream.end();
         this._decodedStream.unpipe(this._speaker).end();
       } catch (e) {
         console.error(e);
       }
+      this.stream = null;
       this._decodedStream = null;
       this._speaker = null;
     }
